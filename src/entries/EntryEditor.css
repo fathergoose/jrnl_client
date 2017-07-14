@@ -1,0 +1,8 @@
+textarea{
+ outline: none;
+ resize: none;
+}
+
+form {
+    margin: 50px 10px;
+}
