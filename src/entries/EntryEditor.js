@@ -10,10 +10,6 @@ class EntryEditor extends Component {
 
     constructor() {
         super();
-        this.state = {
-            Title: '',
-            Body: ''
-        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -23,7 +19,7 @@ class EntryEditor extends Component {
         const value = target.value;
         const name = target.name;
 
-        this.setState({
+        this.props.onContentChange({
             [name]: value
         });
     }
@@ -43,6 +39,9 @@ class EntryEditor extends Component {
 
 
     render() {
+        const title = this.props.title;
+        const body = this.props.body;
+
         return (
             <form onSubmit={this.handleSubmit}>
                 <FormGroup controlId="formControlsText">
@@ -54,7 +53,7 @@ class EntryEditor extends Component {
                         type="text"
                         placeholder="Best day ever"
                         name="Title"
-                        value={this.state.Title}
+                        value={title}
                         onChange={this.handleChange}
                     />
                 </FormGroup>
@@ -66,7 +65,7 @@ class EntryEditor extends Component {
                         componentClass="textarea"
                         placeholder="Maybe that was too optimistic?"
                         name="Body"
-                        value={this.state.Body}
+                        value={body}
                         onChange={this.handleChange}
                     />
                 </FormGroup>

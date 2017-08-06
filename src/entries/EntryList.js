@@ -6,22 +6,18 @@ import './EntryList.css';
 
 
 class EntryList extends Component {
-    URL_BASE = 'https://q39qu26af1.execute-api.us-west-2.amazonaws.com/prod/entries';
+
 
     constructor() {
         super();
-        this.state = {
-            entries: [],
-            loading: true,
-        };
     }
 
     componentWillMount() {
-        this.getAllEntries();
+        //this.getAllEntries();
     }
 
     render(){
-        var entries = this.state.entries.map(entry => {
+        var entries = this.props.entries.map(entry => {
             return (
                 <div key={entry.ID}>
                     <h2>{entry.Title}</h2>
@@ -30,23 +26,11 @@ class EntryList extends Component {
             );
         });
         
-        if (this.state.loading) {
+        if (this.props.loading) {
             return <Spinner />;
         } else {
             return <div>{entries}</div>;
         }
-
-    }
-
-    //////////
-
-    getAllEntries() {
-        Request.get(this.URL_BASE).then(res => {
-            this.setState({
-                entries: res.body.Items,
-                loading: false,
-            });
-        });
     }
 }
 
